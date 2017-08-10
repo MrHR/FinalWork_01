@@ -62,7 +62,7 @@ export default class Board extends Component {
     curUsers.push(user);
     this.setState({
       users: curUsers
-    })
+    });
   }
 
   removeUser(user) {
@@ -87,11 +87,12 @@ export default class Board extends Component {
   }
 
   sendMessage(message) {
-    this.setState({message: message})
+    console.log(message)
+    this.setState({message: message});
   }
 
   keyEvent(key, user) {
-    this.refs[user].move(key)
+    this.refs[user].move(key);
   }
 
 

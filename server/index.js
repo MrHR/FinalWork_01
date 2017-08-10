@@ -18,11 +18,10 @@ io.on('connection', function (socket) {
 
   console.log("connection made")
 
-
   // when the client emits 'new message', this listens and executes
   socket.on('identify',  (data) => {
     // we tell the client to execute 'new message'
-    console.log("received", data)
+    console.log("received", data);
     socket.broadcast.emit('identified', data);
     
     if(data.split("-")[0] === "controller") {
@@ -36,12 +35,13 @@ io.on('connection', function (socket) {
   // when the client emits 'new message', this listens and executes
   socket.on('key',  (data) => {
     // we tell the client to execute 'new message'
-    console.log("received", data)
-    socket.emit('move', data);
+    console.log("received key", data);
+    
     socket.broadcast.emit('move', {
       username: socket.username,
       message: data
     });
+    
   });
 
   // when the user disconnects.. perform this

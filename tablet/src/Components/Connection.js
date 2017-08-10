@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react';
 
 import Socket from 'socket.io-client';
@@ -35,8 +33,6 @@ export default class Connection extends Component {
       //props.eventHandle(data.message)
     });
 
-
-
     this._socket.on('removed', (data) => {
       if(data.split("-")[0] === "controller") {
         //props.removeUser(data);
@@ -49,6 +45,7 @@ export default class Connection extends Component {
       console.log('> socket event:', data);
       props.eventHandle(data.message.key , data.message.id)
     });
+
     this._socket.on('disconnect', () => {
       //console.log('Disconnected from the log-event stream socket server');
       setTimeout(function(){ _this._socket = new Socket(SOCKET_STREAM_URL); }, this._retryMSec);
@@ -60,9 +57,15 @@ export default class Connection extends Component {
       setTimeout(function(){ _this._socket = new Socket(SOCKET_STREAM_URL); }, this._retryMSec);
       //throw err;
     });
+
+    this.sendMessage = this.sendMessage.bind(this);
   }
 
 
+  sendMessage(msgData) {
+    console.log(msgData)
+    this._socket.emit("msgData", msgData);
+  }
 
 
   render() {

@@ -25,7 +25,7 @@ export default class Connection extends Component {
 
     this._socket.on('connect', () => {
       console.log('Connected to the stream socket server.');
-      this._socket.emit("identify", props.id)
+      this._socket.emit("identify", props.id);
     });
 
     this._socket.on('disconnect', () => {

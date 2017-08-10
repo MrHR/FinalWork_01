@@ -6,7 +6,7 @@ import room from './../Rooms/room.js'
 export default class User extends React.Component {
   constructor(props) {
     super(props);
-    this.move = this.move.bind(this)
+    this.move = this.move.bind(this);
     
     this.state = {
       pos: {
@@ -58,16 +58,14 @@ export default class User extends React.Component {
           newPosY = curPos.yPos;
           newPosX = curPos.xPos;
         } 
+
         if(s.displayMessage) {
-          console.log("sending")
-          this.props.sendMessage(s.messages[0]);
+          console.log("sending");
+          this.props.sendMessage({message: s.messages[0], id: this.refs.user});
         }
 
       }
     }
-
-
-
 
     this.setState({ pos: { xPos: newPosX, yPos: newPosY } } )
 
