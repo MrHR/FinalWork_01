@@ -7,7 +7,7 @@ export default class User extends React.Component {
   constructor(props) {
     super(props);
     this.move = this.move.bind(this);
-    
+
     this.state = {
       pos: {
         xPos: 0,
@@ -60,8 +60,12 @@ export default class User extends React.Component {
         } 
 
         if(s.displayMessage) {
-          console.log("sending");
-          this.props.sendMessage({message: s.messages[0], id: this.refs.user});
+          this.props.sendMessage({
+            message: s.messages[0], 
+            actionId:s.actionId, 
+            id: this.props.id,
+            hasButton: s.hasButton
+          });
         }
 
       }

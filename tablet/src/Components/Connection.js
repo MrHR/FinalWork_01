@@ -63,7 +63,6 @@ export default class Connection extends Component {
 
 
   sendMessage(msgData) {
-    console.log(msgData)
     this._socket.emit("msgData", msgData);
   }
 

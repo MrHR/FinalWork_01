@@ -17,10 +17,7 @@ export default class Connection extends Component {
     console.log(`Connecting socket to '${SOCKET_STREAM_URL}'`);
     this._retryMSec = 50000;
 
-
-
     const _this = this;
-    //replace keypress with socket connection
    
 
     this._socket.on('connect', () => {
@@ -39,13 +36,28 @@ export default class Connection extends Component {
       //throw err;
     });
 
+    this._socket.on('message', (data) => {
+      console.log("data message", data);
+      props.eventHandle(data);
+    });
+
     this.send = this.send.bind(this);
   }
 
-  send(key) {
+  send(type, key = "", actionId = 0) {
     console.log(key)
 
-    this._socket.emit("key", {key: key, id: this.props.id});
+    switch(type) {
+      case "key":
+        this._socket.emit("key", {key: key, id: this.props.id});
+        break;
+      case "action":
+        this._socket.emit("actionCall", {actionId: actionId, id:this.props.id});
+      default:
+        console.log('nothing to send');
+        break;
+    }
+    
   }
 
   render() {

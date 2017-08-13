@@ -16,18 +16,16 @@ export default class Board extends Component {
 
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
-    this.keyEvent = this.keyEvent.bind(this)
-
-
+    this.keyEvent = this.keyEvent.bind(this);
+    
     const boardWidth = room.settings.width;
     const boardHeight = room.settings.height;
 
     const tilesTemp = [];
-    console.log(boardHeight)
     for (let i = 0; i < boardHeight; i++) {
       tilesTemp[i] = [];
       for(let j = 0; j < boardWidth; j++) {
-        let element = <Tile count={(i*room.settings.width + j)} />;
+        let element = <Tile count={(i*boardWidth + j)} />;
 
         for(let k= 0; k < room.assets.length; k++) {
 
@@ -35,9 +33,9 @@ export default class Board extends Component {
 
           if(s.position.x === j && s.position.y === i) {
             if(s.blocked) {
-              element = <Block count={(i*room.settings.width + j)} color={s.color} />
+              element = <Block count={(i*boardWidth + j)} color={s.color} />
             } else {            
-              element = <ActionTile count={(i*room.settings.width + j)} color={s.color} />
+              element = <ActionTile count={(i*boardWidth + j)} color={s.color} />
             }
           }
         }
@@ -89,6 +87,7 @@ export default class Board extends Component {
   sendMessage(message) {
     console.log(message)
     this.setState({message: message});
+    this.refs.connection.sendMessage(message);
   }
 
   keyEvent(key, user) {
@@ -98,7 +97,7 @@ export default class Board extends Component {
 
   render() {
     const userMap = this.state.users.map((user, key) => {
-      return <User key={key} ref={user} sendMessage={(message) => this.sendMessage(message) } />
+      return <User key={key} ref={user} id={user} sendMessage={(message) => this.sendMessage(message) } />
     })
     return (
       <div> 
@@ -106,7 +105,7 @@ export default class Board extends Component {
           { this.state.tiles }
         </div>
         {userMap}
-        <Connection eventHandle={(key, user) => this.keyEvent(key, user) } id={this.state.id} addUser={this.addUser} removeUser={this.removeUser} />
+        <Connection eventHandle={(key, user) => this.keyEvent(key, user) } id={this.state.id} addUser={this.addUser} removeUser={this.removeUser} ref="connection" />
       </div>
     );
   }
