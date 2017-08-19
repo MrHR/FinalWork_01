@@ -2,6 +2,7 @@
   "name": "finalwork_03",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.js",
   "dependencies": {
     "EventEmitter": "^1.0.0",
     "eslint": "^4.3.0",

@@ -22,7 +22,27 @@ ol, ul {
   flex-direction: row;
 }
 
+.popup {
+  color: #EEE;
+  text-align: center;
+  width: 200px;
+  position: fixed;
+  left: calc(50% - 100px);
+  top: calc(50% - 50px);
+  font-size: 30px;
+}
 
+.popup ul li {
+  font-size: 15px;
+}
+
+.popup .cta {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid #fff;
+  font-size: 16px;
+}
 
 .tile {
   width: 50px;

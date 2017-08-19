@@ -5,22 +5,27 @@ export default class Lock extends React.Component {
 		super(props);
 	}
 
+	returnMessage(message) {
+
+		this.props.returnMessage("")
+	}
+
 	render() {
 		return (
 			<div className="lock">
-				<div class="wheel numbers-10">
-					<button class="btnDirection btnTop"></button>
-					<button class="btnDirection btnDown"></button>
+				<div className="wheel numbers-10">
+					<button className="btnDirection btnTop"></button>
+					<button className="btnDirection btnDown"></button>
 				</div>
-				<div class="wheel numbers-10">
-					<button class="btnDirection btnTop"></button>
-					<button class="btnDirection btnDown"></button>
+				<div className="wheel numbers-10">
+					<button className="btnDirection btnTop"></button>
+					<button className="btnDirection btnDown"></button>
 				</div>
-				<div class="wheel numbers-10">
-					<button class="btnDirection btnTop"></button>
-					<button class="btnDirection btnDown"></button>
+				<div className="wheel numbers-10">
+					<button className="btnDirection btnTop"></button>
+					<button className="btnDirection btnDown"></button>
 				</div>
-			</div> 
+			</div>
 		);
 	}
 }

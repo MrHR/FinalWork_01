@@ -2,14 +2,13 @@ FROM node:6-slim
 
 WORKDIR /usr/src/app
 
-copy package.json .
-
+COPY package.json .
 
 RUN npm install &&  npm cache clean
 
-copy . .
+COPY . .
 
 EXPOSE 3000
 
 CMD ["npm","build"] && 
-CMD ["npm","start"]
+CMD ["npm", "start"]

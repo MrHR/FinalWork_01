@@ -6,7 +6,7 @@ export default class Message extends React.Component {
     return (
       <div className="message">
         {this.props.message}
-        { this.props.hasButton ? <button onClick={() => this.props.handleClick()}>Yes</button> : null}
+        { this.props.hasButton ? <button onClick={this.props.handleClick}>Yes</button> : null}
       </div>
     );
   }

@@ -3,6 +3,8 @@ import React from 'react';
 import Connection from './Connection.jsx';
 import Message from './Message.jsx';
 import Puzzle from './Puzzle.jsx';
+import CodeEnter from './CodeEnter.jsx';
+
 
 export default class Remote extends React.Component {
 
@@ -10,11 +12,15 @@ export default class Remote extends React.Component {
     super(props);
 
     this.handleKey = this.handleKey.bind(this)
-    this.removeMessage = this.removeMessage.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleCode = this.handleCode.bind(this)
+    this.startGame = this.startGame.bind(this)
 
     this.state = {
       id: "controller-" + this.makeId(10),
-      showPuzzle: false
+      showPuzzle: false,
+      gameCode: null,
+      gameStarted: false
     }
   }
 
@@ -41,7 +47,8 @@ export default class Remote extends React.Component {
         hasMessage: true,
         message: data.data.message,
         actionId: data.data.actionId,
-        hasButton: data.data.hasButton
+        hasButton: data.data.hasButton,
+        puzzle: data.data.puzzle
       });
 
     } else {
@@ -49,38 +56,61 @@ export default class Remote extends React.Component {
     }
   }
 
-  removeMessage(actionId) {
-    this.setState({hasMessage: false});
-    if(actionId !== null) {
-      //this.refs.connection.send("action", actionId);
-      
+  handleClick() {
+    console.log("handling", this.state)
+    //display puzzle
+    if(this.state.puzzle) {
+      this.setState({showPuzzle: true})
     }
-    
+  }
+
+  handleCode(code) {
+    this.refs.connection.send("code", code);
+  }
+
+  startGame() {
+    this.setState({
+      gameStarted: true
+    })
   }
 
   render() {
 
     return (
-      <div className="spaced">
-        <div className="tile" onClick={() => this.handleKey("up") }>
-          up
-        </div>
-        <div className="tile" onClick={() => this.handleKey("down") }>
-          down
-        </div>
-        <div className="tile" onClick={() => this.handleKey("left") }>
-          left
-        </div>
-        <div className="tile" onClick={() => this.handleKey("right") }>
-          right
-        </div>
+      <div>
+        {
+          this.state.gameStarted ?
+            <div className="container">
 
-        { this.state.hasMessage ? <Message message={this.state.message} hasButton={this.state.hasButton} handleClick={(actionId) => this.removeMessage(this.state.actionId)} /> : null }
+              <div className="btnContainer">
+                <div className="emptyTile"></div>
+                <div className="tile" onClick={() => this.handleKey("up") }>
+                  up
+                </div>
+                <div className="emptyTile"></div>
+                <div className="tile" onClick={() => this.handleKey("left") }>
+                  left
+                </div>
+                <div className="tile" onClick={() => this.handleKey("down") }>
+                  down
+                </div>
+                <div className="tile" onClick={() => this.handleKey("right") }>
+                  right
+                </div>
+              </div>
 
-        { this.state.showPuzzle ? <Puzzle /> : null}
+              { this.state.hasMessage ? <Message message={this.state.message} hasButton={this.state.hasButton} handleClick={this.handleClick} /> : null }
 
-        <Connection eventHandle={(data) => this.messageEvent(data)} ref="connection" id={this.state.id} />
+              { this.state.showPuzzle ? <Puzzle type={this.state.puzzle.type} solution={this.state.puzzle.solution} /> : null }
+
+            </div>
+          :
+            <CodeEnter handleCode={this.handleCode} />
+
+        }
+        <Connection startGame={this.startGame} eventHandle={(data) => this.messageEvent(data)} ref="connection" id={this.state.id} />
       </div>
+      
     );
   }
 }

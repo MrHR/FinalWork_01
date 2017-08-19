@@ -64,7 +64,8 @@ export default class User extends React.Component {
             message: s.messages[0], 
             actionId:s.actionId, 
             id: this.props.id,
-            hasButton: s.hasButton
+            hasButton: s.hasButton,
+            puzzle: s.puzzle
           });
         }
 

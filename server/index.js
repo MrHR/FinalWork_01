@@ -13,25 +13,51 @@ server.listen(port, function () {
 app.use(express.static(__dirname + '/public'));
 
 var users = [];
-var boards = [];
+var games = [];
 
 io.on('connection', function (socket) {
 
   console.log("connection made");
 
-  // when the client emits 'new message', this listens and executes
-  socket.on('identify',  (data) => {
-    // we tell the client to execute 'new message'
-    console.log("received", data);
-    socket.broadcast.emit('identified', data);
-    
-    //add user
-    if(data.split("-")[0] === "controller") {
-      users.push({key: data, username: socket.username});
-      console.log("user added");
-    }
 
+  // when the client emits 'new message', this listens and executes
+  socket.on('startGame',  (data) => {
+    // we tell the client to execute 'new message'
+
+    let text = "";
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    console.log({ payload: text })
+    //add gamecode
+    var newGame = {
+      id: text,
+      users: [],
+      room: null
+    }
+    games.push(newGame)
+
+    console.log("games", games);
+
+    socket.emit('gamecode', { payload: newGame });
+ 
   });
+
+  socket.on('addUser',  (data) => {
+    // we tell the client to execute 'new message'
+    console.log(data)
+
+    for(let i = 0; i < games.length; i++ ){
+      if( games[i].id === data.payload && games[i].users.indexOf( data.id ) == -1) {
+        console.log("emitted", data);
+        socket.broadcast.emit('userjoined', { joined: data });
+        games[i].users.push(data.id);
+      }
+    }
+    console.log(games);
+  });
+
 
   // when the client emits 'new key message', this listens and executes
   socket.on('key',  (data) => {
@@ -48,6 +74,13 @@ io.on('connection', function (socket) {
   //when the controller accepted an action
   socket.on('actionCall', (data) => {
     console.log('recieved actioncall', data);
+  });
+
+
+  //when the controller accepted an action
+  socket.on('startgame', (data) => {
+    console.log('recieved startGame', data);
+    socket.broadcast.emit("startgame", data.payload)
   });
 
   //when the board emits message to controller

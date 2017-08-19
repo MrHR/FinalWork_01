@@ -9,7 +9,7 @@ RUN npm install &&  npm cache clean
 
 copy . .
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["npm","build"] && 
 CMD ["npm","start"]

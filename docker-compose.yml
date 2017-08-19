@@ -16,6 +16,6 @@ services:
   server:
     build: server
     ports:
-     - "3002:3000"
+     - "5000:5000"
      
 

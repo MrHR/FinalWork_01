@@ -5,9 +5,10 @@ import ActionTile from "./ActionTile.jsx"
 import User from "./User.jsx"
 import Block from "./Block.jsx"
 import room from "./../Rooms/room.js"
+import Waiting from './Waiting.jsx'
+
 
 import Connection from './Connection.js'
-
 
 
 export default class Board extends Component {
@@ -17,7 +18,9 @@ export default class Board extends Component {
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
     this.keyEvent = this.keyEvent.bind(this);
-    
+    this.handleGameCode = this.handleGameCode.bind(this)
+    this.startGame = this.startGame.bind(this);
+
     const boardWidth = room.settings.width;
     const boardHeight = room.settings.height;
 
@@ -47,11 +50,17 @@ export default class Board extends Component {
       tiles: tilesTemp,
       message: null,
       users: [],
-      id: "tablet-" + this.makeId(10)
+      id: "tablet-" + this.makeId(10),
+      gameStarted: false,
+      gameCode: null
     };
 
 
 
+  }
+
+  handleGameCode(data) {
+    this.setState({gameCode: data})
   }
 
   addUser(user) {
@@ -80,7 +89,6 @@ export default class Board extends Component {
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (let i = 0; i < length; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));
-
     return text;
   }
 
@@ -94,6 +102,13 @@ export default class Board extends Component {
     this.refs[user].move(key);
   }
 
+  startGame() {
+    this.setState({
+      gameStarted: true
+    })
+    this.refs.connection.startGame(this.state.gameCode);
+  }
+
 
   render() {
     const userMap = this.state.users.map((user, key) => {
@@ -101,11 +116,17 @@ export default class Board extends Component {
     })
     return (
       <div> 
-        <div className="board" style={{width: room.settings.width*50}}>
-          { this.state.tiles }
-        </div>
-        {userMap}
-        <Connection eventHandle={(key, user) => this.keyEvent(key, user) } id={this.state.id} addUser={this.addUser} removeUser={this.removeUser} ref="connection" />
+        {
+          this.state.gameStarted ? 
+            <div>
+              <div className="board" style={{width: room.settings.width*50}}>
+                { this.state.tiles }
+              </div>
+              {userMap}
+            </div>
+            : <Waiting startGame={this.startGame} code={this.state.gameCode} users={this.state.users} />
+        }
+        <Connection eventHandle={(key, user) => this.keyEvent(key, user) } id={this.state.id} addUser={this.addUser} removeUser={this.removeUser} handleGameCode={this.handleGameCode} ref="connection" />
       </div>
     );
   }

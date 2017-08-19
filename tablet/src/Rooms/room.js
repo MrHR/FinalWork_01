@@ -18,6 +18,10 @@ export default {
         "Looks like an old cupboard, wanne take a look?",
         "message 2"
       ],
+      puzzle: {
+        type: "lock",
+        solution: "13.43.56.76"
+      },
       position: {
         x: 1,
         y: 1
@@ -44,6 +48,7 @@ export default {
       messages: [
         "It's a book case, on the books are numbers: 13 43 56 76"
       ],
+      puzzle: null,
       position: {
         x:3,
         y:5

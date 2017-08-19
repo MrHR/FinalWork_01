@@ -6,12 +6,15 @@ import Socket from 'socket.io-client';
 
 const SOCKET_STREAM_URL = 'http://localhost:5000';
 
+let gameCode = null;
+
 
 export default class Connection extends Component {
   
 
   constructor(props) {
     super(props);
+
     
     this._socket = new Socket(SOCKET_STREAM_URL);
     console.log(`Connecting socket to '${SOCKET_STREAM_URL}'`);
@@ -41,11 +44,17 @@ export default class Connection extends Component {
       props.eventHandle(data);
     });
 
+    this._socket.on("startgame", (data) => {
+      if(gameCode === data.id) {
+        this.props.startGame();
+      }
+    })
+
     this.send = this.send.bind(this);
   }
 
   send(type, key = "", actionId = 0) {
-    console.log(key)
+    console.log(type)
 
     switch(type) {
       case "key":
@@ -53,6 +62,11 @@ export default class Connection extends Component {
         break;
       case "action":
         this._socket.emit("actionCall", {actionId: actionId, id:this.props.id});
+        break;
+      case "code":
+        this._socket.emit("addUser", {payload: key, id:this.props.id});
+        gameCode = key
+        break;        
       default:
         console.log('nothing to send');
         break;

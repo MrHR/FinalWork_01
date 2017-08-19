@@ -22,16 +22,20 @@ export default class Connection extends Component {
 
     this._socket.on('connect', () => {
       console.log('Connected to the stream socket server.');
-      this._socket.emit("identify", props.id)
+      this._socket.emit("startGame", props.id)
     });
 
-    this._socket.on('identified', (data) => {
-      if(data.split("-")[0] === "controller") {
-        props.addUser(data);
-      }
-      console.log('> socket identification:', data);
+    this._socket.on('userjoined', (data) => {
+      console.log("Having a new user", data);
+      this.props.addUser(data.joined.id)
       //props.eventHandle(data.message)
     });
+
+    this._socket.on('gamecode', (data) => {
+      console.log('> socket gamedata:', data);
+      props.handleGameCode(data.payload)
+    });
+
 
     this._socket.on('removed', (data) => {
       if(data.split("-")[0] === "controller") {
@@ -64,6 +68,11 @@ export default class Connection extends Component {
 
   sendMessage(msgData) {
     this._socket.emit("msgData", msgData);
+  }
+
+  startGame(gameID) {
+    console.log("sending")
+    this._socket.emit("startgame", {payload: gameID});
   }
 
 
