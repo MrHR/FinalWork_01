@@ -56,7 +56,8 @@ export default {
       id: 1,
       displayMessage: false,
       instructions: [],
-      puzzle: []//puzzle assets
+      puzzle: "Lock",
+      assets: []
     }
   ]
 };

@@ -14,9 +14,6 @@ ol, ul {
   display: table;
 }
 
-
-
-
 .game {
   display: flex;
   flex-direction: row;
@@ -75,3 +72,4 @@ ol, ul {
   color: #fff;
   
 }
+

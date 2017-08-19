@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import Remote from "./Components/Remote.jsx"
 
 import './index.css';
-
+import './lock.css';
 
 
 class Game extends React.Component {

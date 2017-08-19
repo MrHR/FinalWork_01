@@ -43,7 +43,7 @@ export default class Connection extends Component {
 
     this._socket.on('move', (data) => {
       console.log('> socket event:', data);
-      props.eventHandle(data.message.key , data.message.id)
+      props.eventHandle(data.message.key , data.message.id);
     });
 
     this._socket.on('disconnect', () => {

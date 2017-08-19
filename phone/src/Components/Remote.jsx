@@ -1,8 +1,8 @@
 
 import React from 'react';
-
 import Connection from './Connection.jsx';
 import Message from './Message.jsx';
+import Puzzle from './Puzzle.jsx';
 
 export default class Remote extends React.Component {
 
@@ -13,7 +13,8 @@ export default class Remote extends React.Component {
     this.removeMessage = this.removeMessage.bind(this);
 
     this.state = {
-      id: "controller-" + this.makeId(10)
+      id: "controller-" + this.makeId(10),
+      showPuzzle: false
     }
   }
 
@@ -51,7 +52,8 @@ export default class Remote extends React.Component {
   removeMessage(actionId) {
     this.setState({hasMessage: false});
     if(actionId !== null) {
-      this.refs.connection.send("action", actionId);  
+      //this.refs.connection.send("action", actionId);
+      
     }
     
   }
@@ -74,6 +76,8 @@ export default class Remote extends React.Component {
         </div>
 
         { this.state.hasMessage ? <Message message={this.state.message} hasButton={this.state.hasButton} handleClick={(actionId) => this.removeMessage(this.state.actionId)} /> : null }
+
+        { this.state.showPuzzle ? <Puzzle /> : null}
 
         <Connection eventHandle={(data) => this.messageEvent(data)} ref="connection" id={this.state.id} />
       </div>

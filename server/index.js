@@ -33,7 +33,6 @@ io.on('connection', function (socket) {
 
   });
 
-
   // when the client emits 'new key message', this listens and executes
   socket.on('key',  (data) => {
     // we tell the client to execute 'new message'
