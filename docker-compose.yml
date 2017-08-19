@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+  tablet:
+    build: tablet
+    ports:
+      - "3001:3000"
+    volumes:
+      - "./phone/node_modules:/node_modules"
+
+  phone:
+    build: phone
+    ports:
+     - "3000:3000"
+
+  server:
+    build: server
+    ports:
+     - "3002:3000"
+     
+

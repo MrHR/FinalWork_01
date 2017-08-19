@@ -1,21 +1,19 @@
 import React from 'react';
-import room from './../Rooms/room.js';
-import Lock from '/Puzzles/Lock.js';
+import Lock from './Puzzles/Lock.jsx';
 
 export default class Puzzle extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			lock: "lock"
+		}
 	}
 
 	render() {
 		return (
 			<div className="puzzle">
-				{
-					switch(lock) {
-						case "lock": 
-							<Lock params={params} />
-					}
-				}
+				{ this.state.lock === "lock" ? <Lock /> : null }
 			</div> 
 		);
 	}
