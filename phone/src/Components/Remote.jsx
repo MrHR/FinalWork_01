@@ -15,6 +15,8 @@ export default class Remote extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleCode = this.handleCode.bind(this)
     this.startGame = this.startGame.bind(this)
+    this.answerPuzzle = this.answerPuzzle.bind(this)
+
 
     this.state = {
       id: "controller-" + this.makeId(10),
@@ -74,34 +76,40 @@ export default class Remote extends React.Component {
     })
   }
 
+  answerPuzzle(answer) {
+    //handle answer
+  }
+
   render() {
+
+    const BackgroundImage = require('./Images/texture_brusedmetal.png');
 
     return (
       <div>
         {
           this.state.gameStarted ?
-            <div className="container">
+            <div className="container" style={{backgroundImage: `url(${BackgroundImage})`}}>
 
               <div className="btnContainer">
                 <div className="emptyTile"></div>
                 <div className="tile" onClick={() => this.handleKey("up") }>
-                  up
+                  <img src={require('./Images/button_up.png')} style={{width: "100%", height: "100%"}} />
                 </div>
                 <div className="emptyTile"></div>
                 <div className="tile" onClick={() => this.handleKey("left") }>
-                  left
+                  <img src={require('./Images/button_left.png')} style={{width: "100%", height: "100%"}} />
                 </div>
                 <div className="tile" onClick={() => this.handleKey("down") }>
-                  down
+                  <img src={require('./Images/button_down.png')} style={{width: "100%", height: "100%"}} />
                 </div>
                 <div className="tile" onClick={() => this.handleKey("right") }>
-                  right
+                  <img src={require('./Images/button_right.png')} style={{width: "100%", height: "100%"}} />
                 </div>
               </div>
 
               { this.state.hasMessage ? <Message message={this.state.message} hasButton={this.state.hasButton} handleClick={this.handleClick} /> : null }
 
-              { this.state.showPuzzle ? <Puzzle type={this.state.puzzle.type} solution={this.state.puzzle.solution} /> : null }
+              { this.state.showPuzzle ? <Puzzle type={this.state.puzzle.type} solution={this.state.puzzle.solution} answerPuzzle={this.answerPuzzle} /> : null }
 
             </div>
           :

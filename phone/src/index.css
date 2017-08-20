@@ -88,16 +88,15 @@ ol, ul {
   margin-left: calc(50% - 150px);
 }
 .emptyTile {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   float: left;
 }
 
 .tile {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   display: block;
-  background: #333;
   float: left;
   border: 1px solid #000;
   box-sizing: border-box;
@@ -187,5 +186,10 @@ main {
     width:60px;
     height:200px;
     line-height: 200px;
+  }
+
+  .keypad {
+    width: 150px;
+    color: #fff;
   }
 

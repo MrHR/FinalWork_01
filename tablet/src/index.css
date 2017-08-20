@@ -14,9 +14,6 @@ ol, ul {
   display: table;
 }
 
-
-
-
 .game {
   display: flex;
   flex-direction: row;
@@ -48,9 +45,8 @@ ol, ul {
   width: 50px;
   height: 50px;
   display: block;
-  background: #333;
+  background-color:transparent;
   float: left;
-  border: 1px solid #000;
   box-sizing: border-box;
 }
 
@@ -58,9 +54,8 @@ ol, ul {
   width: 50px;
   height: 50px;
   display: block;
-  background: #666;
+  background: transparent;
   float: left;
-  border: 1px solid #000;
   box-sizing: border-box;
 }
 
@@ -68,9 +63,7 @@ ol, ul {
   width: 50px;
   height: 50px;
   display: block;
-  background: #000;
   float: left;
-  border: 1px solid #000;
   box-sizing: border-box;
   position: absolute;
   left: 0px;
@@ -81,7 +74,10 @@ ol, ul {
 .board {
   width: 500px;
   margin: 0px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 .spaced {
   float: left;
   padding: 20px;

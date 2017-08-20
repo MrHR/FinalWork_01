@@ -11,7 +11,8 @@ export default class User extends React.Component {
     this.state = {
       pos: {
         xPos: 0,
-        yPos: 0
+        yPos: 0,
+        degrees: "0deg"
       }
     }
   }
@@ -28,18 +29,30 @@ export default class User extends React.Component {
       case "left":
         //left logic
         newPosX = newPosX-1;
+        this.setState({
+          degrees:"90deg"
+        });
         break;
       case "right":
         //right logic
         newPosX = newPosX+1;
+        this.setState({
+          degrees:"-90deg"
+        });
         break;
       case "up":
         //up logic
         newPosY = newPosY-1;
+        this.setState({
+          degrees:"180deg"
+        });
         break;
       case "down":
         //down logic
         newPosY = newPosY+1;
+        this.setState({
+          degrees:"0deg"
+        });
         break;
 
     } 
@@ -83,7 +96,13 @@ export default class User extends React.Component {
           left: this.state.pos.xPos*50,
           top: this.state.pos.yPos*50
         }}>
-        user
+        <img style={{
+            width: "100%", 
+            height: "100%",
+            transform: `rotate(${this.state.degrees})`
+          }} 
+          src={require('./Images/character_02.png')}
+        />
       </div>
     );
   }

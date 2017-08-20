@@ -7,6 +7,7 @@ services:
       - "3001:3000"
     volumes:
       - "./phone/node_modules:/node_modules"
+      - "./tablet/images:/images"
 
   phone:
     build: phone

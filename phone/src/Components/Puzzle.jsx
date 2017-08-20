@@ -5,15 +5,27 @@ export default class Puzzle extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.answered = this.answered.bind(this);
+
 		this.state = {
 			lock: "lock"
 		}
 	}
 
+	answered(answer) {
+		console.log(answer)
+		if(answer == this.props.solution) {
+			alert("well done")
+		}
+	}
+
+
 	render() {
 		return (
 			<div className="puzzle">
-				{ this.state.lock === "lock" ? <Lock /> : null }
+			{this.props.solution}
+				{ this.state.lock === "lock" ? <Lock answered={this.answered} /> : null }
+			}
 			</div> 
 		);
 	}

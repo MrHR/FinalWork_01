@@ -111,6 +111,8 @@ export default class Board extends Component {
 
 
   render() {
+
+    const BackgroundImage = require("./Images/room_01.png");
     const userMap = this.state.users.map((user, key) => {
       return <User key={key} ref={user} id={user} sendMessage={(message) => this.sendMessage(message) } />
     })
@@ -119,7 +121,11 @@ export default class Board extends Component {
         {
           this.state.gameStarted ? 
             <div>
-              <div className="board" style={{width: room.settings.width*50}}>
+              <div className="board" style={{
+                width: room.settings.width*50,
+                height: room.settings.height*50, 
+                backgroundImage:`url(${BackgroundImage})`
+              }}>
                 { this.state.tiles }
               </div>
               {userMap}

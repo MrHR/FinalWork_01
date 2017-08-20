@@ -6,7 +6,7 @@ export default class Tile extends React.Component {
   render() {
     return (
       <div className="tile">
-        {this.props.count}
+     
       </div>
     );
   }
