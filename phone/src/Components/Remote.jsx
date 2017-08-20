@@ -16,7 +16,11 @@ export default class Remote extends React.Component {
     this.handleCode = this.handleCode.bind(this)
     this.startGame = this.startGame.bind(this)
     this.answerPuzzle = this.answerPuzzle.bind(this)
+<<<<<<< HEAD
+    this.gameDone = this.gameDone.bind(this);
+=======
 
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
     this.state = {
       id: "controller-" + this.makeId(10),
@@ -37,7 +41,7 @@ export default class Remote extends React.Component {
 
   handleKey(key) {
     //send the key to the server
-    this.setState({hasMessage: false});
+    this.setState({hasMessage: false, showPuzzle: false });
     this.refs.connection.send("key", key);
   }
 
@@ -61,12 +65,20 @@ export default class Remote extends React.Component {
   handleClick() {
     console.log("handling", this.state)
     //display puzzle
+<<<<<<< HEAD
+    if(this.state.puzzle !== null) {
+=======
     if(this.state.puzzle) {
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
       this.setState({showPuzzle: true})
     }
   }
 
   handleCode(code) {
+<<<<<<< HEAD
+    this.setState({gameCode: code})
+=======
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
     this.refs.connection.send("code", code);
   }
 
@@ -76,8 +88,19 @@ export default class Remote extends React.Component {
     })
   }
 
+<<<<<<< HEAD
+  gameDone() {
+    this.setState({gameStarted: false});
+  }
+
   answerPuzzle(answer) {
     //handle answer
+    this.refs.connection.send("answer", answer);
+    this.setState({gameStarted: false});
+=======
+  answerPuzzle(answer) {
+    //handle answer
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
   }
 
   render() {
@@ -116,7 +139,11 @@ export default class Remote extends React.Component {
             <CodeEnter handleCode={this.handleCode} />
 
         }
+<<<<<<< HEAD
+        <Connection startGame={this.startGame} eventHandle={(data) => this.messageEvent(data)} ref="connection" gameDone={this.gameDone} id={this.state.id} />
+=======
         <Connection startGame={this.startGame} eventHandle={(data) => this.messageEvent(data)} ref="connection" id={this.state.id} />
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
       </div>
       
     );

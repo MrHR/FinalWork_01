@@ -36,6 +36,14 @@ export default class Connection extends Component {
       props.handleGameCode(data.payload)
     });
 
+<<<<<<< HEAD
+    this._socket.on('gameDone', (data) => {
+      console.log('> socket game done:', data);
+      props.handleGameDone(data)
+    });
+
+=======
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
     this._socket.on('removed', (data) => {
       if(data.split("-")[0] === "controller") {
@@ -75,6 +83,14 @@ export default class Connection extends Component {
     this._socket.emit("startgame", {payload: gameID});
   }
 
+<<<<<<< HEAD
+  gameOver(gameID) {
+    console.log("sending")
+    this._socket.emit("gameOver", {payload: gameID});
+  }
+
+=======
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
   render() {
 

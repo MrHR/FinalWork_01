@@ -28,11 +28,28 @@ ol, ul {
   top: calc(50% - 50px);
   font-size: 30px;
 }
+<<<<<<< HEAD
+.timerpopup {
+  color: #EEE;
+  text-align: center;
+  width: 200px;
+  position: fixed;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  font-size: 30px; 
+}
 
 .popup ul li {
   font-size: 15px;
 }
 
+=======
+
+.popup ul li {
+  font-size: 15px;
+}
+
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 .popup .cta {
   color: #fff;
   text-decoration: none;

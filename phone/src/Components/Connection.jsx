@@ -49,6 +49,14 @@ export default class Connection extends Component {
         this.props.startGame();
       }
     })
+<<<<<<< HEAD
+    this._socket.on("gameDone", (data) => {
+      if(gameCode === data.id) {
+        this.props.gameDone();
+      }
+    })
+=======
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
     this.send = this.send.bind(this);
   }
@@ -66,6 +74,12 @@ export default class Connection extends Component {
       case "code":
         this._socket.emit("addUser", {payload: key, id:this.props.id});
         gameCode = key
+<<<<<<< HEAD
+        break;  
+      case "answer":
+        this._socket.emit("puzzleDone", {payload: gameCode, id:this.props.id});
+=======
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
         break;        
       default:
         console.log('nothing to send');

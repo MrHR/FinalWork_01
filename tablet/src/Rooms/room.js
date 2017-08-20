@@ -10,7 +10,7 @@ export default {
 
   assets: [
     {
-      color: "#666",
+      color: "",
       displayMessage: true,
       blocked: false,
       hasButton: true,
@@ -21,7 +21,11 @@ export default {
       ],
       puzzle: {
         type: "lock",
+<<<<<<< HEAD
+        solution: "1.2.2.3"
+=======
         solution: "0.4.5.7"
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
       },
       position: {
         x: 2,
@@ -30,7 +34,11 @@ export default {
     },
 
     {
+<<<<<<< HEAD
+      color:"",
+=======
       color:"#e34",
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
       displayMessage: true,
       blocked: false,
       hasButton: false,
@@ -45,6 +53,24 @@ export default {
       }
     },
     {
+<<<<<<< HEAD
+      color:"",
+      displayMessage: true,
+      blocked: false,
+      hasButton: false,
+      actionId:0,
+      messages: [
+        "These lights are too dim to read the document. Who placed them that way?"
+      ],
+      puzzle: null,
+      position: {
+        x:10,
+        y:7
+      }
+    },
+    {
+=======
+>>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
       color: "",
       displayMessage: false,
       blocked: true,
