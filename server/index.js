@@ -37,7 +37,6 @@ io.on('connection', function (socket) {
       room: null
     }
     games.push(newGame)
-<<<<<<< HEAD
 
     console.log("games", games);
 
@@ -59,29 +58,6 @@ io.on('connection', function (socket) {
     console.log(games);
   });
 
-=======
-
-    console.log("games", games);
-
-    socket.emit('gamecode', { payload: newGame });
- 
-  });
-
-  socket.on('addUser',  (data) => {
-    // we tell the client to execute 'new message'
-    console.log(data)
-
-    for(let i = 0; i < games.length; i++ ){
-      if( games[i].id === data.payload && games[i].users.indexOf( data.id ) == -1) {
-        console.log("emitted", data);
-        socket.broadcast.emit('userjoined', { joined: data });
-        games[i].users.push(data.id);
-      }
-    }
-    console.log(games);
-  });
-
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
   // when the client emits 'new key message', this listens and executes
   socket.on('key',  (data) => {
@@ -100,7 +76,6 @@ io.on('connection', function (socket) {
     console.log('recieved actioncall', data);
   });
 
-<<<<<<< HEAD
   //when the controller accepted an action
   socket.on('puzzleDone', (data) => {
     console.log('recieved actioncall', data);
@@ -114,9 +89,6 @@ io.on('connection', function (socket) {
     socket.broadcast.emit("gameDone", data.payload)
   });
   
-=======
-
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
   //when the controller accepted an action
   socket.on('startgame', (data) => {
     console.log('recieved startGame', data);

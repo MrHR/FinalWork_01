@@ -6,18 +6,10 @@ import User from "./User.jsx"
 import Block from "./Block.jsx"
 import room from "./../Rooms/room.js"
 import Waiting from './Waiting.jsx'
-<<<<<<< HEAD
 import EndScreen from './EndScreen.jsx';
-=======
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
-
-<<<<<<< HEAD
-import Timer from './Timer.jsx'
-=======
 import Connection from './Connection.js'
-
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
+import Timer from './Timer.jsx'
 
 export default class Board extends Component {
   constructor() {
@@ -28,11 +20,8 @@ export default class Board extends Component {
     this.keyEvent = this.keyEvent.bind(this);
     this.handleGameCode = this.handleGameCode.bind(this)
     this.startGame = this.startGame.bind(this);
-<<<<<<< HEAD
     this.handleGameDone = this.handleGameDone.bind(this);
     this.ranOut = this.ranOut.bind(this)
-=======
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
     const boardWidth = room.settings.width;
     const boardHeight = room.settings.height;
@@ -65,27 +54,19 @@ export default class Board extends Component {
       users: [],
       id: "tablet-" + this.makeId(10),
       gameStarted: false,
-<<<<<<< HEAD
       gameCode: null,
       gameDone: false
-=======
-      gameCode: null
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
     };
 
 
 
   }
-
-<<<<<<< HEAD
   handleGameDone(data) {
     if(this.state.gameCode.id === data) {
       this.setState({gameDone: true})
     }
   }
 
-=======
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
   handleGameCode(data) {
     this.setState({gameCode: data})
   }
@@ -135,14 +116,10 @@ export default class Board extends Component {
     })
     this.refs.connection.startGame(this.state.gameCode);
   }
-
-<<<<<<< HEAD
   ranOut() {
     this.refs.connection.gameOver(this.state.gameCode);
     this.setState({gameDone: true})
   }
-=======
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
   render() {
 
@@ -151,7 +128,6 @@ export default class Board extends Component {
       return <User key={key} ref={user} id={user} sendMessage={(message) => this.sendMessage(message) } />
     })
     return (
-<<<<<<< HEAD
       <div>
         {this.state.gameDone ?
           <EndScreen />
@@ -175,24 +151,7 @@ export default class Board extends Component {
               <Connection eventHandle={(key, user) => this.keyEvent(key, user) } id={this.state.id} addUser={this.addUser} removeUser={this.removeUser} handleGameCode={this.handleGameCode} handleGameDone={this.handleGameDone} ref="connection" />
           </div>
         }
-=======
-      <div> 
-        {
-          this.state.gameStarted ? 
-            <div>
-              <div className="board" style={{
-                width: room.settings.width*50,
-                height: room.settings.height*50, 
-                backgroundImage:`url(${BackgroundImage})`
-              }}>
-                { this.state.tiles }
-              </div>
-              {userMap}
-            </div>
-            : <Waiting startGame={this.startGame} code={this.state.gameCode} users={this.state.users} />
-        }
-        <Connection eventHandle={(key, user) => this.keyEvent(key, user) } id={this.state.id} addUser={this.addUser} removeUser={this.removeUser} handleGameCode={this.handleGameCode} ref="connection" />
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
+
       </div>
     );
   }

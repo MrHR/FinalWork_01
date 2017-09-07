@@ -28,11 +28,6 @@ ol, ul {
   flex-direction: row;
 }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 .user {
   width: 50px;
   height: 50px;
@@ -94,13 +89,8 @@ ol, ul {
 }
 
 .btnContainer {
-<<<<<<< HEAD
-  width: 300px;
-  height: 200px;
-=======
   width: 150px;
   height: 100px;
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
   margin-top: 50px;
   margin-left: calc(50% - 150px);
 }
@@ -115,7 +105,6 @@ ol, ul {
   height: 100px;
   display: block;
   float: left;
-<<<<<<< HEAD
   box-sizing: border-box;
 }
 
@@ -124,9 +113,7 @@ ol, ul {
   height: 50px;
   display: block;
   float: left;
-=======
   border: 1px solid #000;
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
   box-sizing: border-box;
 }
 
@@ -135,8 +122,6 @@ main {
     background-color:#ccc;  
   }
 
-<<<<<<< HEAD
-=======
   .lock {
     display:inline-block;
     height:200px;
@@ -217,7 +202,6 @@ main {
     height:200px;
     line-height: 200px;
   }
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 
   .keypad {
     width: 150px;

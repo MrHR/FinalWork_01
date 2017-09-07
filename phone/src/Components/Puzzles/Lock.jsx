@@ -31,11 +31,7 @@ export default class Lock extends React.Component {
 	render() {
 		const keypad = [];
 		for(let i = 0; i<10; i++) {
-<<<<<<< HEAD
 			keypad.push(<a key={i} className="keyTile" onClick={() => this.addNum({i})}>{i}</a>);
-=======
-			keypad.push(<a key={i} className="tile" onClick={() => this.addNum({i})}>{i}</a>);
->>>>>>> e97d30ee8e55d400ace03a6ff472b3d167d98b9d
 		}
 		return (
 			<div className="keypad">
