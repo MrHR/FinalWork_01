@@ -12,7 +12,7 @@ export default class Timer extends React.Component {
     this.state = {
       ellapsed: 0,
       start: Date.now(),
-      limit: 60
+      limit: 600
     }
   }
   componentDidMount() {

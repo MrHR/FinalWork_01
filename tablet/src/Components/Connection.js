@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import Socket from 'socket.io-client';
 
-const SOCKET_STREAM_URL = 'http://45.55.182.105/:5000';
+const SOCKET_STREAM_URL = 'http://45.55.182.105:5000';
+const SOCKET_STREAM_URL = 'http://localhost:5000';
 
 
 export default class Connection extends Component {
